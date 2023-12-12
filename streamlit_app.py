@@ -7,7 +7,7 @@ import pandas as pd
 
 # loading the saved model
 loaded_model = pickle.load(open('trained_models.sav', 'rb'))
-pd.set_option('mode.use_inf_as_null', True)
+
 
 # Mapping dictionaries
 poutcome_mapping = {'failure': 0, 'other': 1, 'pending': 2, 'success': 3, 'unknown': 4}
