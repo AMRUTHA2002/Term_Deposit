@@ -1,6 +1,8 @@
 import numpy as np
 import pickle
 import streamlit as st
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # loading the saved model
 loaded_model = pickle.load(open('trained_models.sav', 'rb'))
@@ -36,32 +38,47 @@ def Term_Deposit(input_data):
         return 'The person has taken a Term Deposit'
 
 
+def display_graphs():
+    # Example graph
+    plt.figure(figsize=(8, 6))
+    sns.histplot(np.random.randn(1000), kde=True)
+    st.pyplot()
+
+    # Add more graphs as needed
+
+
 def main():
     # giving a title
     st.title('Term Deposit Prediction')
 
-    # getting the input data from the user
-    Job = st.selectbox('Job', list(job_mapping.keys()))
-    Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
-    Education = st.selectbox('Education', list(education_mapping.keys()))
-    Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
-    Age = st.text_input('Age')
-    Annual_Income = st.text_input('Annual Income')
-    Balance = st.text_input('Balance')
-    Duration = st.text_input('Duration')
-    Campaign = st.text_input('Campaign')
-    Last = st.text_input('Last')
-    Count_Txn = st.text_input('Number of Transactions')
+    # Add a sidebar for navigation
+    page = st.sidebar.radio("Select Page", ["Prediction", "Graphs"])
 
-    # code for Prediction
-    diagnosis = ''
+    if page == "Prediction":
+        # getting the input data from the user
+        Job = st.selectbox('Job', list(job_mapping.keys()))
+        Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
+        Education = st.selectbox('Education', list(education_mapping.keys()))
+        Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
+        Age = st.text_input('Age')
+        Annual_Income = st.text_input('Annual Income')
+        Balance = st.text_input('Balance')
+        Duration = st.text_input('Duration')
+        Campaign = st.text_input('Campaign')
+        Last = st.text_input('Last')
+        Count_Txn = st.text_input('Number of Transactions')
 
-    # creating a button for Prediction
-    if st.button('Term Deposit'):
-        diagnosis = Term_Deposit([Job, Marital, Education, Poutcome, Age, Annual_Income, Balance, Duration, Campaign, Last,
-                                  Count_Txn])
+        # code for Prediction
+        diagnosis = ''
 
-    st.success(diagnosis)
+        # creating a button for Prediction
+        if st.button('Term Deposit'):
+            diagnosis = Term_Deposit([Job, Marital, Education, Poutcome, Age, Annual_Income, Balance, Duration, Campaign,
+                                      Last, Count_Txn])
+
+        st.success(diagnosis)
+    elif page == "Graphs":
+        display_graphs()
 
 
 if __name__ == '__main__':
