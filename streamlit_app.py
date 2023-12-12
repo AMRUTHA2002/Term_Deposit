@@ -55,18 +55,18 @@ def main():
     page = st.sidebar.radio("Select Page", ["Prediction", "Graphs"])
 
     if page == "Prediction":
-      # getting the input data from the user
-      Job = st.selectbox('Job', list(job_mapping.keys()))
-      Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
-      Education = st.selectbox('Education', list(education_mapping.keys()))
-      Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
-      Age = st.text_input('Age')
-      Annual_Income = st.text_input('Annual Income')
-      Balance = st.text_input('Balance')
-      Duration = st.text_input('Duration')
-      Campaign = st.text_input('Campaign')
-      Last = st.text_input('Last')
-      Count_Txn = st.text_input('Number of Transactions')
+        # getting the input data from the user
+        Job = st.selectbox('Job', list(job_mapping.keys()))
+        Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
+        Education = st.selectbox('Education', list(education_mapping.keys()))
+        Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
+        Age = st.text_input('Age')
+        Annual_Income = st.text_input('Annual Income')
+        Balance = st.text_input('Balance')
+        Duration = st.text_input('Duration')
+        Campaign = st.text_input('Campaign')
+        Last = st.text_input('Last')
+        Count_Txn = st.text_input('Number of Transactions')
 
         # code for Prediction
         diagnosis = ''
