@@ -48,6 +48,11 @@ def display_graphs(df):
 
     # Pie chart
     customers_with_loan = df[df['loan'] == 'yes']
+
+    # Handle inf values by replacing them with NaN
+    customers_with_loan.replace([np.inf, -np.inf], np.nan, inplace=True)
+
+    # Calculate the percentage with insurance
     percentage_with_insurance = (customers_with_loan['Insurance'] == 'yes').mean() * 100
 
     fig, ax = plt.subplots(figsize=(6, 6))
@@ -64,7 +69,6 @@ def display_graphs(df):
 
     # Print the percentage
     st.write(f'Percentage of customers with a loan who have insurance: {percentage_with_insurance:.2f}%')
-
 
 
 
