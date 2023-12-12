@@ -41,34 +41,9 @@ def Term_Deposit(input_data):
 
 
 def display_graphs(df):
+  
     # Example graph
-    plt.figure(figsize=(8, 6))
-    sns.histplot(np.random.randn(1000), kde=True)
-    st.pyplot()
 
-    # Pie chart
-    customers_with_loan = df[df['loan'] == 'yes']
-
-    # Handle inf values by replacing them with NaN
-    customers_with_loan.replace([np.inf, -np.inf], np.nan, inplace=True)
-
-    # Calculate the percentage with insurance
-    percentage_with_insurance = (customers_with_loan['Insurance'] == 'yes').mean() * 100
-
-    fig, ax = plt.subplots(figsize=(6, 6))
-    labels = ['With Insurance', 'Without Insurance']
-    sizes = [percentage_with_insurance, 100 - percentage_with_insurance]
-    colors = ['blue', 'lightgray']
-    explode = (0.1, 0)
-
-    ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
-    ax.set_title('Percentage of Customers with a Loan who have Insurance')
-
-    # Display the chart in Streamlit
-    st.pyplot(fig)
-
-    # Print the percentage
-    st.write(f'Percentage of customers with a loan who have insurance: {percentage_with_insurance:.2f}%')
 
 
 
