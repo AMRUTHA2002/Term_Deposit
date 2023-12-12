@@ -4,7 +4,7 @@ import streamlit as st
 
 
 # loading the saved model
-loaded_model = pickle.load(open('https://drive.google.com/file/d/190b-aWCrw1_dcUkEv1UK3UfsnuOiZX08/view?usp=drive_link', 'rb'))
+loaded_model = pickle.load(open('trained_model.sav', 'rb'))
 
 
 # creating a function for Prediction
@@ -21,10 +21,10 @@ def Term_Deposit(input_data):
     prediction = loaded_model.predict(input_data_reshaped)
     print(prediction)
 
-    if (prediction[0] == 0):
-        print('The person has not taken a Term Deposit')
+    if prediction[0] == 0:
+        return 'The person has not taken a Term Deposit'
     else:
-        print('The person has taken a Term Deposit')
+        return 'The person has taken a Term Deposit'
   
     
   
