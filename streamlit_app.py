@@ -3,6 +3,7 @@ import pickle
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 # loading the saved model
 loaded_model = pickle.load(open('trained_models.sav', 'rb'))
@@ -38,13 +39,32 @@ def Term_Deposit(input_data):
         return 'The person has taken a Term Deposit'
 
 
-def display_graphs():
+def display_graphs(df):
     # Example graph
     plt.figure(figsize=(8, 6))
     sns.histplot(np.random.randn(1000), kde=True)
     st.pyplot()
 
-    # Add more graphs as needed
+    # Pie chart
+    customers_with_loan = df[df['loan'] == 'yes']
+    percentage_with_insurance = (customers_with_loan['Insurance'] == 'yes').mean() * 100
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    labels = ['With Insurance', 'Without Insurance']
+    sizes = [percentage_with_insurance, 100 - percentage_with_insurance]
+    colors = ['blue', 'lightgray']
+    explode = (0.1, 0)
+
+    ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    ax.set_title('Percentage of Customers with a Loan who have Insurance')
+
+    # Display the chart in Streamlit
+    st.pyplot(fig)
+
+    # Print the percentage
+    st.write(f'Percentage of customers with a loan who have insurance: {percentage_with_insurance:.2f}%')
+
+
 
 
 def main():
@@ -77,8 +97,10 @@ def main():
                                       Last, Count_Txn])
 
         st.success(diagnosis)
+      
     elif page == "Graphs":
-        display_graphs()
+      df = pd.read_excel('cleaned_data.xlsx')
+      display_graphs(df)
 
 
 if __name__ == '__main__':
