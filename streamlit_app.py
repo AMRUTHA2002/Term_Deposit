@@ -3,11 +3,9 @@ import pickle
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
 
 # loading the saved model
 loaded_model = pickle.load(open('trained_models.sav', 'rb'))
-
 
 # Mapping dictionaries
 poutcome_mapping = {'failure': 0, 'other': 1, 'pending': 2, 'success': 3, 'unknown': 4}
@@ -40,11 +38,13 @@ def Term_Deposit(input_data):
         return 'The person has taken a Term Deposit'
 
 
-def display_graphs(df):
-  
+def display_graphs():
     # Example graph
+    plt.figure(figsize=(8, 6))
+    sns.histplot(np.random.randn(1000), kde=True)
+    st.pyplot()
 
-
+    # Add more graphs as needed
 
 
 def main():
@@ -55,18 +55,18 @@ def main():
     page = st.sidebar.radio("Select Page", ["Prediction", "Graphs"])
 
     if page == "Prediction":
-        # getting the input data from the user
-        Job = st.selectbox('Job', list(job_mapping.keys()))
-        Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
-        Education = st.selectbox('Highest Education Level', list(education_mapping.keys()))
-        Poutcome = st.selectbox('Outcome of Previous Marketing Campaign', list(poutcome_mapping.keys()))
-        Age = st.text_input('Age')
-        Annual_Income = st.text_input('Annual Income')
-        Balance = st.text_input('Balance')
-        Duration = st.text_input('Duration of call with Customer')
-        Campaign = st.text_input('Number of contact performed during this campaign')
-        Last = st.text_input('Number of days that passed after the last contacted day')
-        Count_Txn = st.text_input('Number of Transactions')
+      # getting the input data from the user
+      Job = st.selectbox('Job', list(job_mapping.keys()))
+      Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
+      Education = st.selectbox('Education', list(education_mapping.keys()))
+      Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
+      Age = st.text_input('Age')
+      Annual_Income = st.text_input('Annual Income')
+      Balance = st.text_input('Balance')
+      Duration = st.text_input('Duration')
+      Campaign = st.text_input('Campaign')
+      Last = st.text_input('Last')
+      Count_Txn = st.text_input('Number of Transactions')
 
         # code for Prediction
         diagnosis = ''
@@ -77,10 +77,8 @@ def main():
                                       Last, Count_Txn])
 
         st.success(diagnosis)
-      
     elif page == "Graphs":
-      df = pd.read_excel('cleaned_data.xlsx')
-      display_graphs(df)
+        display_graphs()
 
 
 if __name__ == '__main__':
