@@ -58,14 +58,14 @@ def main():
         # getting the input data from the user
         Job = st.selectbox('Job', list(job_mapping.keys()))
         Marital = st.selectbox('Marital Status', list(marital_mapping.keys()))
-        Education = st.selectbox('Education', list(education_mapping.keys()))
-        Poutcome = st.selectbox('Poutcome', list(poutcome_mapping.keys()))
+        Education = st.selectbox('Highest Education Level', list(education_mapping.keys()))
+        Poutcome = st.selectbox('Outcome of Previous Marketing Campaign', list(poutcome_mapping.keys()))
         Age = st.text_input('Age')
         Annual_Income = st.text_input('Annual Income')
         Balance = st.text_input('Balance')
-        Duration = st.text_input('Duration')
-        Campaign = st.text_input('Campaign')
-        Last = st.text_input('Last')
+        Duration = st.text_input('Duration of call with Customer')
+        Campaign = st.text_input('Number of contact performed during this campaign')
+        Last = st.text_input('Number of days that passed after the last contacted day')
         Count_Txn = st.text_input('Number of Transactions')
 
         # code for Prediction
