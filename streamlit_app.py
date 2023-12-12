@@ -38,17 +38,17 @@ def main():
     # getting the input data from the user
     
     
-    Marital = st.text_input('Marital Status')
-    Education = st.text_input('Education')
-    Last = st.text_input('Last')
-    Campaign = st.text_input('Campaign')
-    Poutcome = st.text_input('Poutcome')
     Job = st.text_input('Job')
-    Count = st.text_input('Count')
+    Marital = st.text_input('Marital Status')
+    Education= st.text_input('Education')
+    Poutcome = st.text_input('Poutcome')
+    Age = st.text_input('Age')
     Annual_Income = st.text_input('Annual Income')
     Balance = st.text_input('Balance')
-    Age = st.text_input('Age')
     Duration = st.text_input('Duration')
+    Campaign = st.text_input('Campaign')
+    Last = st.text_input('Last')
+    Count_Txn = st.text_input('NUmber of Transactions')
 
     
     
@@ -58,7 +58,7 @@ def main():
     # creating a button for Prediction
     
     if st.button('Term Deposit'):
-        diagnosis = Term_Deposit([Marital,Education,Last,Campaign,Poutcome,Job,Count,Annual_Income,Balance,Age,Duration])
+        diagnosis = Term_Deposit([Job,Marital,Education,Poutcome,Age,Annual_Income,Balance,Duration,Campaign,Last,Count_Txn])
         
         
     st.success(diagnosis)
