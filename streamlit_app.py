@@ -47,7 +47,7 @@ def display_graphs(df):
     colors = ['#3498db', '#2ecc71']
 
     # Create a custom style for the plot
-    plt.style.use('seaborn-whitegrid')
+    plt.style.use('default')
 
     # Use Streamlit's plotting capabilities
     st.subheader('1. Loan and Insurance Analysis')
